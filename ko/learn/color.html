@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="p5.js a JS client-side library for creating graphic and interactive experiences, based on the core principles of Processing.">
     <title tabindex="1">learn | p5.js</title>
-    <link rel="stylesheet" href="/assets/css/all.css?v=236ece">
+    <link rel="stylesheet" href="/assets/css/all.css?v=b0528d">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="/../../assets/img/favicon.ico">
     <link rel="icon" href="/../../assets/img/favicon.ico">
@@ -17,7 +18,7 @@
     <script src="/../../assets/js/vendor/ace-nc/ace.js"></script>
     <script src="/../../assets/js/vendor/ace-nc/mode-javascript.js"></script>
     <script src="/../../assets/js/vendor/prism.js"></script>
-    <script src="/assets/js/init.js?v=af215d"></script>
+    <script src="/assets/js/init.js?v=97b4f7"></script>
 
 
   </head>
@@ -112,7 +113,7 @@
 
       <!-- this script only needs to get added once even if there are multiple widget instances -->
       <script src="//toolness.github.io/p5.js-widget/p5-widget.js"></script>
-      <script type="text/p5" data-autoplay data-p5-version="1.1.9">
+      <script type="text/p5" data-autoplay data-p5-version="1.3.1">
         function draw() {
   background(150);
   stroke(0);
@@ -142,7 +143,7 @@
 
       <p>이는 디지털 색상을 밝은 빛으로서 가정하는 데에서 비롯된 것인데, 색상 범위를 조정하여 원하는 색을 만들 수 있습니다. 예를 들어, 빨강색에 초록색, 파랑색을 더하면 회색이 됩니다. 그리고 약간의 빨강색에 약간의 파랑색을 더하면 어두운 보라색이 됩니다. RGB 색상을 더 많이 프로그래밍하고 실험할수록, 손가락으로 물감을 휘젔던 색상 본능만큼 디지털 색상에 따른 본능 역시 커질 것입니다. 한편, 우리는 "빨강색 적당하게 쓰고 여기에 약간의 파란색을 섞어줘"라는 식으로도 말할 수 없습니다. 반드시 정확한 양을 지정해야합니다. 회색 음영과 마찬가지로, 각각의 색상 요소는 0(색상 0가지)부터 255(최대한 많은 색상 수)에 이르는 범위 내에서 표현됩니다. 그리고 R, G, B의 순서에 따라 정렬됩니다. 이번엔 좀 더 일반적인 색상에 대해 알아볼까요</p>
 
-      <script type="text/p5" data-autoplay data-p5-version="1.1.9">
+      <script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function draw() {
   background(255);
   noStroke();
@@ -170,7 +171,7 @@ function draw() {
 
       <p>알파값은 0부터 255 사이 조정가능합니다. 0은 완전히 투명한 상태(즉, 0% 투명도)이고 255는 완전히 불투명한 상태(즉, 100% 투명도)입니다.</p>
 
-      <script type="text/p5" data-autoplay  data-p5-version="1.1.9">
+      <script type="text/p5" data-autoplay  data-p5-version="1.3.1">
   createCanvas(100, 100);
   fill(0,0,255);
   rect(0,0,50,100);
@@ -217,9 +218,9 @@ function draw() {
 
       <img src="../../assets/learn/color/hsb.png">
       <ul class="list_view">
-        <li><b>색조 Hue</b>—색상의 종류, 기본 범위 0부터 255까지</li>
-        <li><b>채도 Saturation</b>—색상의 생생함 정도, 기본 범위 0부터 255까지</li>
-        <li><b>밝기 Brightness</b>—(당연히) 색상의 밝은 정도, 기본 범위 0부터 255까지</li>
+        <li><b>색조 Hue</b>—색상의 종류, 기본 범위 0부터 360까지</li>
+        <li><b>채도 Saturation</b>—색상의 생생함 정도, 기본 범위 0부터 100까지</li>
+        <li><b>밝기 Brightness</b>—(당연히) 색상의 밝은 정도, 기본 범위 0부터 100까지</li>
       </ul>
 
       <p>이 <a href="/ko/reference/#/p5/colorMode">colorMode()</a> 함수를 이용하여 HSB값 범위 또한 설정할 수 있습니다. 어떤 사람들은 색조(Hue)를 0부터 360까지 설정하거나(위의 사진처럼 360도의 둥근 색상띠가 생각나지요), 채도와 밝기는 0부터 100까지 설정(0-100% 퍼센티지와 유비되지요)하는 것을 선호하기도 합니다.</p>
@@ -230,7 +231,7 @@ function draw() {
     <footer>
       <h2 class="sr-only">스케치 크레딧</h2>
       <p> p5.js는 현재 모이라 터너 <a href='https://github.com/mcturner1995' target="_blank">Moira
-          Turner</a> 가 리드하며, 로렌 맥카시 <a href='http://lauren-mccarthy.com' target="_blank">Lauren
+          Turner</a> 가 리드하며, 로렌 맥카시 <a href='http://lauren-mccarthy.com' target="_blank">Lauren Lee
           McCarthy</a> 가 창안하고 협력자 커뮤니티와 함께 개발하였습니다. 지원: 프로세싱 재단 <a href="http://processing.org/foundation/" target="_blank">Processing
           Foundation</a> 과 
         <a href="http://itp.nyu.edu/itp/" target="_blank">NYU ITP</a>.  아이덴티티 및 그래픽 디자인: <a
@@ -263,11 +264,10 @@ function draw() {
         <li><a href="http://pi.processing.org/">Processing for Pi</a></li>
         <li><a href="https://processingfoundation.org/">Processing Foundation</a></li>
       </ul>
-    
       <a tabindex="1" href="#content" id="skip-to-content">Skip to main content</a>
     
-      <!-- <a id="promo-link" href="https://donorbox.org/supportpf2019-fundraising-campaign" target="_blank"><div id="promo">This season, we need your help! Click here to #SupportP5!</div></a> -->
-    </nav>    <script>
+    </nav>
+    <script>
     var langs = ["en","es","ko","zh-Hans"];
 
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

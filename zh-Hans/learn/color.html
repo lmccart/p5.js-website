@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="p5.js a JS client-side library for creating graphic and interactive experiences, based on the core principles of Processing.">
     <title tabindex="1">learn | p5.js</title>
-    <link rel="stylesheet" href="/assets/css/all.css?v=236ece">
+    <link rel="stylesheet" href="/assets/css/all.css?v=b0528d">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="/../../assets/img/favicon.ico">
     <link rel="icon" href="/../../assets/img/favicon.ico">
@@ -17,7 +18,7 @@
     <script src="/../../assets/js/vendor/ace-nc/ace.js"></script>
     <script src="/../../assets/js/vendor/ace-nc/mode-javascript.js"></script>
     <script src="/../../assets/js/vendor/prism.js"></script>
-    <script src="/assets/js/init.js?v=af215d"></script>
+    <script src="/assets/js/init.js?v=97b4f7"></script>
 
     <script src="/../../assets/js/vendor/pangu.min.js"></script>
 
@@ -62,7 +63,7 @@
         <li><a href="/zh-Hans/">主页</a></li>
         <li><a href="https://editor.p5js.org">编辑器</a></li>
         <li><a href="/zh-Hans/download/">下载</a></li>
-        <li><a href="/zh-Hans/download/support.html">Donate</a></li>
+        <li><a href="/zh-Hans/download/support.html">捐献</a></li>
         <li><a href="/zh-Hans/get-started/">入门</a></li>
         <li><a href="/zh-Hans/reference/">参考文献</a></li>
         <li><a href="/zh-Hans/libraries/">程式库</a></li>
@@ -70,7 +71,7 @@
         <li><a href="/zh-Hans/examples/">范例</a></li>
         <li><a href="/zh-Hans/books/">书籍</a></li>
         <li><a href="/zh-Hans/community/">社群</a></li>
-        <li><a href="https://showcase.p5js.org">Showcase</a></li>
+        <li><a href="https://showcase.p5js.org">案例展示</a></li>
         <li><a href="https://discourse.processing.org/c/p5js" target=_blank class="other-link">论坛</a></li>
         <li><a href="http://github.com/processing/p5.js" target=_blank class="other-link">GitHub</a></li>
         <li><a href="http://twitter.com/p5xjs" target=_blank class="other-link">Twitter</a></li>
@@ -99,21 +100,21 @@
       </p>
 
       <pre><code class="language-javascript">
-        background(255);    // 设置背景颜色为白色 
- stroke(0);          // 设置外线颜色为黑色 
- fill(150);          // 设置填充色为灰色 
+        background(255);    // 设置背景颜色为白色
+ stroke(0);          // 设置外线颜色为黑色
+ fill(150);          // 设置填充色为灰色
  rect(50,50,75,100); // 绘制四方形
       </code></pre>
 
       <p>
-      使用 <a href="/zh-Hans/reference/#/p5/noStroke">noStroke()</a> 及 <a href="/zh-Hans/reference/#/p5/noFill">noFill()</a>函数将会分别去除外线色灰填充色。我们直觉上可能会以为“ stroke(0) ”表示没有外线，可是我们必须记得 0 在这并不代表“无”，然而是代表黑色。此外，我们必须记得不要同时去除 <b>noStroke()</b> 及 <b>noFill()</b> 不然不会有任何图形出现在画布上！
+      使用 <a href="/zh-Hans/reference/#/p5/noStroke">noStroke()</a> 及 <a href="/zh-Hans/reference/#/p5/noFill">noFill()</a>函数将会分别去除外线色灰填充色。我们直觉上可能会以为“ stroke(0) ”表示没有外线，可是我们必须记得 0 在这并不代表“无”，然而是代表黑色。此外，我们必须记得不要同时去除<b>noStroke()</b> 及 <b>noFill()</b> 不然不会有任何图形出现在画布上！
       </p>
 
       <p>以此同时，如果我们绘制两个图形，p5.js 将会使用最近（代码内从上至下）所定义的外线色及填充色值。</p>
 
       <!-- this script only needs to get added once even if there are multiple widget instances -->
       <script src="//toolness.github.io/p5.js-widget/p5-widget.js"></script>
-      <script type="text/p5" data-autoplay data-p5-version="1.1.9">
+      <script type="text/p5" data-autoplay data-p5-version="1.3.1">
         function draw() {
   background(150);
   stroke(0);
@@ -143,7 +144,7 @@
 
       <p>这假设所有色颜色都为最亮的亮度，但是您也能同时使用一系列的颜色值，因此一些红加上一些绿再加上一些蓝将等于灰，而一点红加上一点蓝将等于深紫色。虽然这可能需要一点时间来习惯，随着您编程及使用 RGB 颜色值来试验的经验越多，您会对它越熟悉，就如使用您的手指来混合颜色一样。当然您不能单纯说“混合一些红与一点蓝”，您必须提供确切的数值。就如灰渐值，个别颜色的值也是由介于 0（不使用任何该颜色）与 255（完全使用该颜色）之间，而他们的顺序为红（R）、绿（G）及蓝（B）。通过更多的试验您将会对 RGB 颜色更加熟悉，不过接下来我们将介绍一些使用常用颜色的代码。</p>
 
-      <script type="text/p5" data-autoplay data-p5-version="1.1.9">
+      <script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function draw() {
   background(255);
   noStroke();
@@ -171,7 +172,7 @@ function draw() {
 
       <p>Alpha 值也是介于 0 与 255 之间，0 代表完全透明而 255 代表完全不透明。</p>
 
-      <script type="text/p5" data-autoplay  data-p5-version="1.1.9">
+      <script type="text/p5" data-autoplay  data-p5-version="1.3.1">
   createCanvas(100, 100);
   fill(0,0,255);
   rect(0,0,50,100);
@@ -197,7 +198,7 @@ function draw() {
       <h2>自定义颜色值范围</h2>
 
       <p>
-      介于 0 与 255 之间的 RGB 颜色值并不是 p5.js 唯一定义颜色的方法，事实上，我们能使用多种方法来定义颜色。比如说，您可能比较偏向于使用 0 至 100（如百分比）来定义颜色。为此您可以使用 <a href="/zh-Hans/reference/#/p5/colorMode">colorMode()</a>.
+      介于 0 与 255 之间的 RGB 颜色值并不是 p5.js 唯一定义颜色的方法，事实上，我们能使用多种方法来定义颜色。比如说，您可能比较偏向于使用 0 至 100（如百分比）来定义颜色。为此您可以使用<a href="/zh-Hans/reference/#/p5/colorMode">colorMode()</a>.
       </p>
 
       <pre><code>
@@ -218,9 +219,9 @@ function draw() {
 
       <img src="../../assets/learn/color/hsb.png">
       <ul class="list_view">
-        <li><b>色调</b>—色调值，默认上介于 0 至 255 之间。</li>
-        <li><b>饱和度</b>—该颜色的饱和度，默认上介于 0 至 255 之间。</li>
-        <li><b>亮度</b>—该颜色的亮度，默认上介于 0 至 255 之间。</li>
+        <li><b>色调</b>—色调值，默认上介于 0 至 360 之间。</li>
+        <li><b>饱和度</b>—该颜色的饱和度，默认上介于 0 至 100 之间。</li>
+        <li><b>亮度</b>—该颜色的亮度，默认上介于 0 至 100 之间。</li>
       </ul>
 
       <p>使用函数 <a href="/zh-Hans/reference/#/p5/colorMode">colorMode()</a> 您就能设定您自选的数字范围。有些人会比较偏好使用介于 0 至 360 之间的数值来定义色调（就如色轮的 360 度一样）及 0 至 100 之间的数值来定义饱和度及亮度（介于 0% 至 100%）。</p>
@@ -231,7 +232,7 @@ function draw() {
     <footer>
       <h2 class="sr-only">归功于</h2>
       <p> p5.js 目前由<a href='https://github.com/mcturner1995' target="_blank">Moira
-          Turner</a>的原<a href='http://lauren-mccarthy.com' target="_blank">Lauren
+          Turner</a>的原<a href='http://lauren-mccarthy.com' target="_blank">Lauren Lee
           McCarthy</a>并在<a href="http://processing.org/foundation/" target="_blank">Processing
           Foundation</a> 和
         <a href="http://itp.nyu.edu/itp/" target="_blank">NYU ITP</a>. 的支持下由其合作社群所开发。形象及平面设计<a
@@ -264,11 +265,10 @@ function draw() {
         <li><a href="http://pi.processing.org/">Processing for Pi</a></li>
         <li><a href="https://processingfoundation.org/">Processing Foundation</a></li>
       </ul>
-    
       <a tabindex="1" href="#content" id="skip-to-content">Skip to main content</a>
     
-      <!-- <a id="promo-link" href="https://donorbox.org/supportpf2019-fundraising-campaign" target="_blank"><div id="promo">This season, we need your help! Click here to #SupportP5!</div></a> -->
-    </nav>    <script>
+    </nav>
+    <script>
     var langs = ["en","es","ko","zh-Hans"];
 
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

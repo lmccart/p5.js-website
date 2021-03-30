@@ -13,6 +13,7 @@
   "reference-parameters": "Parámetros",
   "reference-syntax": "Sintaxis",
   "reference-returns": "Retorna",
+  "Environment": "Ambiente",
   "Color": "Color",
   "Color Conversion": "Color Conversion",
   "Creating & Reading": "Creación y lectura",
@@ -23,7 +24,6 @@
   "Curves": "Curvas",
   "Vertex": "Vértices",
   "Constants": "Constantes",
-  "Environment": "Ambiente",
   "Structure": "Estructura",
   "DOM": "DOM",
   "Rendering": "Render",
@@ -73,6 +73,47 @@
       "sketch": "Function: a closure that can set optional <a href=\"#/p5/preload\">preload()</a>,  <a href=\"#/p5/setup\">setup()</a>, and/or <a href=\"#/p5/draw\">draw()</a> properties on the  given p5 instance",
       "node": "HTMLElement: (Optional) element to attach canvas to"
     },
+    "describe": {
+      "description": [
+        "Creates a screen reader accessible description for the canvas. The first parameter should be a string with a description of the canvas. The second parameter is optional. If specified, it determines how the description is displayed. ",
+        "<code class=\"language-javascript\">describe(text, LABEL)</code> displays the description to all users as a <a href=\"https://en.wikipedia.org/wiki/Museum_label\" target=\"_blank\"> tombstone or exhibit label/caption</a> in a <code class=\"language-javascript\"><div class=\"p5Label\"></div></code> adjacent to the canvas. You can style it as you wish in your CSS. ",
+        "<code class=\"language-javascript\">describe(text, FALLBACK)</code> makes the description accessible to screen-reader users only, in <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility\" target=\"_blank\"> a sub DOM inside the canvas element</a>. If a second parameter is not specified, by default, the description will only be available to screen-reader users."
+      ],
+      "params": {
+        "text": "String: description of the canvas",
+        "display": "Constant: (Optional) either LABEL or FALLBACK (Optional)"
+      }
+    },
+    "describeElement": {
+      "description": [
+        "This function creates a screen-reader accessible description for elements —shapes or groups of shapes that create meaning together— in the canvas. The first paramater should be the name of the element. The second parameter should be a string with a description of the element. The third parameter is optional. If specified, it determines how the element description is displayed. ",
+        "<code class=\"language-javascript\">describeElement(name, text, LABEL)</code> displays the element description to all users as a <a href=\"https://en.wikipedia.org/wiki/Museum_label\" target=\"_blank\"> tombstone or exhibit label/caption</a> in a <code class=\"language-javascript\"><div class=\"p5Label\"></div></code> adjacent to the canvas. You can style it as you wish in your CSS. ",
+        "<code class=\"language-javascript\">describeElement(name, text, FALLBACK)</code> makes the element description accessible to screen-reader users only, in <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility\" target=\"_blank\"> a sub DOM inside the canvas element</a>. If a second parameter is not specified, by default, the element description will only be available to screen-reader users."
+      ],
+      "params": {
+        "name": "String: name of the element",
+        "text": "String: description of the element",
+        "display": "Constant: (Optional) either LABEL or FALLBACK (Optional)"
+      }
+    },
+    "textOutput": {
+      "description": [
+        "<code class=\"language-javascript\">textOutput()</code> creates a screenreader accessible output that describes the shapes present on the canvas. The general description of the canvas includes canvas size, canvas color, and number of elements in the canvas (example: 'Your output is a, 400 by 400 pixels, lavender blue canvas containing the following 4 shapes:'). This description is followed by a list of shapes where the color, position, and area of each shape are described (example: \"orange ellipse at top left covering 1% of the canvas\"). Each element can be selected to get more details. A table of elements is also provided. In this table, shape, color, location, coordinates and area are described (example: \"orange ellipse location=top left area=2\"). ",
+        "<code class=\"language-javascript\">textOutput()</code> and <code class=\"language-javascript\">texOutput(FALLBACK)</code> make the output available in <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility\" target=\"_blank\"> a sub DOM inside the canvas element</a> which is accessible to screen readers. <code class=\"language-javascript\">textOutput(LABEL)</code> creates an additional div with the output adjacent to the canvas, this is useful for non-screen reader users that might want to display the output outside of the canvas' sub DOM as they code. However, using LABEL will create unnecessary redundancy for screen reader users. We recommend using LABEL only as part of the development process of a sketch and removing it before publishing or sharing with screen reader users."
+      ],
+      "params": {
+        "display": "Constant: (Optional) either FALLBACK or LABEL (Optional)"
+      }
+    },
+    "gridOutput": {
+      "description": [
+        "<code class=\"language-javascript\">gridOutput()</code> lays out the content of the canvas in the form of a grid (html table) based on the spatial location of each shape. A brief description of the canvas is available before the table output. This description includes: color of the background, size of the canvas, number of objects, and object types (example: \"lavender blue canvas is 200 by 200 and contains 4 objects - 3 ellipses 1 rectangle\"). The grid describes the content spatially, each element is placed on a cell of the table depending on its position. Within each cell an element the color and type of shape of that element are available (example: \"orange ellipse\"). These descriptions can be selected individually to get more details. A list of elements where shape, color, location, and area are described (example: \"orange ellipse location=top left area=1%\") is also available. ",
+        "<code class=\"language-javascript\">gridOutput()</code> and <code class=\"language-javascript\">gridOutput(FALLBACK)</code> make the output available in <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility\" target=\"_blank\"> a sub DOM inside the canvas element</a> which is accessible to screen readers. <code class=\"language-javascript\">gridOutput(LABEL)</code> creates an additional div with the output adjacent to the canvas, this is useful for non-screen reader users that might want to display the output outside of the canvas' sub DOM as they code. However, using LABEL will create unnecessary redundancy for screen reader users. We recommend using LABEL only as part of the development process of a sketch and removing it before publishing or sharing with screen reader users."
+      ],
+      "params": {
+        "display": "Constant: (Optional) either FALLBACK or LABEL (Optional)"
+      }
+    },
     "alpha": {
       "description": [
         "Extrae el valor de alpha de un color o de un arreglo de pixeles."
@@ -109,7 +150,7 @@
       "returns": "Arreglo: color resultante",
       "params": {
         "gray": "Número|String: número especificando el valor entre blanco y negro.",
-        "alpha": "Número: valor de alpha relativo al rango de color actual (por defecto es 0-100)",
+        "alpha": "Número: valor de alpha relativo al rango de color actual (por defecto es 0-255)",
         "v1": "Número|String: valor de rojo o tinte relativo al rango de color actual, o un string de color",
         "v2": "Número: valor de verde o saturación relativo al rango de color actual",
         "v3": "Número: valor de azul o brillo relativo al rango de color actual",
@@ -188,7 +229,7 @@
       "params": {
         "color": "Color: cualquier valor creado con la función color()",
         "colorstring": "colorstring: string de color, formatos posibles: enteros rgb() o rgba(), porcentajes rgb() o rgba(), hex 3 dígitos, hex 6 dígitos",
-        "a": "Número: opacidad del fondo relativo al rango de color actual (por defecto es 0-100)",
+        "a": "Número: opacidad del fondo relativo al rango de color actual (por defecto es 0-255)",
         "gray": "Número: especifica un valor entre blanco y negro",
         "v1": "Número: valor de rojo o hue (dependiendo del modo de color actual)",
         "v2": "Número: valor de verde o saturación (dependiendo del modo de color actual)",
@@ -351,6 +392,8 @@
         "y3": "Número: coordenada y del tercer punto.",
         "x4": "Número: coordenada x del cuarto punto.",
         "y4": "Número: coordenada y del cuarto punto.",
+        "detailX": "Integer: (Optional) number of segments in the x-direction",
+        "detailY": "Integer: (Optional) number of segments in the y-direction",
         "z1": "Number: the z-coordinate of the first point",
         "z2": "Number: the z-coordinate of the second point",
         "z3": "Number: the z-coordinate of the third point",
@@ -666,8 +709,15 @@
         "v": "Number: (Optional) the vertex's texture v-coordinate"
       }
     },
+    "VERSION": {
+      "description": [
+        "Version of this p5.js."
+      ]
+    },
     "P2D": {
-      "description": ["The default, two-dimensional renderer."]
+      "description": [
+        "The default, two-dimensional renderer."
+      ]
     },
     "WEBGL": {
       "description": [
@@ -707,12 +757,12 @@
     },
     "DEGREES": {
       "description": [
-        "Constant to be used with <a href=\"#/p5/angleMode\">angleMode()</a> function, to set the mode which p5.js interprates and calculates angles (either DEGREES or RADIANS)."
+        "Constant to be used with <a href=\"#/p5/angleMode\">angleMode()</a> function, to set the mode which p5.js interprets and calculates angles (either DEGREES or RADIANS)."
       ]
     },
     "RADIANS": {
       "description": [
-        "Constant to be used with <a href=\"#/p5/angleMode\">angleMode()</a> function, to set the mode which p5.js interprates and calculates angles (either RADIANS or DEGREES)."
+        "Constant to be used with <a href=\"#/p5/angleMode\">angleMode()</a> function, to set the mode which p5.js interprets and calculates angles (either RADIANS or DEGREES)."
       ]
     },
     "CORNER": {},
@@ -814,6 +864,8 @@
     "PORTRAIT": {},
     "GRID": {},
     "AXES": {},
+    "LABEL": {},
+    "FALLBACK": {},
     "print": {
       "description": [
         "La función print() escribe en la consola del navegador. Esta función es a menudo de ayuda para observar los datos que un programa está produciendo. Esta función crea una nueva línea de texto por cada ejecución de la función. Elementos individuales pueden ser separados por comillas ('') y unidos con el operador de adición (+). Aunque print() es similar a console.log(), no llama a console.log() directamente, para simular una manera más simple de entender el comportamiento del programa. Por esto mismo, es más lento. Para resultados más rápidos, usar directamente console.log().",
@@ -860,7 +912,9 @@
       }
     },
     "noCursor": {
-      "description": ["Esconde el cursor."]
+      "description": [
+        "Esconde el cursor."
+      ]
     },
     "displayWidth": {
       "description": [
@@ -885,7 +939,10 @@
     "windowResized": {
       "description": [
         "La función windowResized() es llamada cada vez que la ventana del navegador cambia de tamaño. Es un buen lugar para cambiar las dimensiones del lienzo o hacer cualquier otro ajuste necesario para acomodar las nuevas dimensiones de la ventana."
-      ]
+      ],
+      "params": {
+        "event": "Object: (Optional) optional Event callback argument."
+      }
     },
     "width": {
       "description": [
@@ -921,11 +978,15 @@
       "returns": "Número: la densidad de pixeles actual del monitor"
     },
     "getURL": {
-      "description": ["Retorna la URL actual."],
+      "description": [
+        "Retorna la URL actual."
+      ],
       "returns": "String: URL"
     },
     "getURLPath": {
-      "description": ["Retorna la dirección URL como un arreglo"],
+      "description": [
+        "Retorna la dirección URL como un arreglo"
+      ],
       "returns": "Arreglo: los componentes de la dirección"
     },
     "getURLParams": {
@@ -1020,7 +1081,7 @@
     "function": {
       "description": [
         "Creates and names a <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions\">function</a>. A <a href=\"#/p5/function\">function</a> is a set of statements that perform a task. ",
-        "Optionally, functions can have parameters. <a href=\"https://developer.mozilla.org/en-US/docs/Glossary/Parameter\">Parameters</a> are variables that are scoped to the function, that can be assigned a value when calling the function.Multiple parameters can be given by seperating them with commmas. ",
+        "Optionally, functions can have parameters. <a href=\"https://developer.mozilla.org/en-US/docs/Glossary/Parameter\">Parameters</a> are variables that are scoped to the function, that can be assigned a value when calling the function.Multiple parameters can be given by seperating them with commas. ",
         "From <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function\">the MDN entry</a>: Declares a function with the specified parameters."
       ]
     },
@@ -1064,7 +1125,7 @@
     "for": {
       "description": [
         "<a href=\"#/p5/for\">for</a> creates a loop that is useful for executing one section of code multiple times. ",
-        "A 'for loop' consists of three different expressions inside of a parenthesis, all of which are optional.These expressions are used to control the number of times the loop is run.The first expression is a statement that is used to set the initial state for the loop.The second expression is a condition that you would like to check before each loop. If this expression returns false then the loop will exit.The third expression is executed at the end of each loop. These expression are seperated by ; (semi-colon).In case of an empty expression, only a semi-colon is written. ",
+        "A 'for loop' consists of three different expressions inside of a parenthesis, all of which are optional.These expressions are used to control the number of times the loop is run.The first expression is a statement that is used to set the initial state for the loop.The second expression is a condition that you would like to check before each loop. If this expression returns false then the loop will exit.The third expression is executed at the end of each loop. These expression are separated by ; (semi-colon).In case of an empty expression, only a semi-colon is written. ",
         "The code inside of the loop body (in between the curly braces) is executed between the evaluation of the second and third expression. ",
         "As with any loop, it is important to ensure that the loop can 'exit', or that the test condition will eventually evaluate to false. The test condition with a <a href=\"#/p5/for\">for</a> loop is the second expression detailed above. Ensuring that this expression can eventually become false ensures that your loop doesn't attempt to run an infinite amount of times, which can crash your browser. ",
         "From <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for\">the MDN entry</a>: Creates a loop that executes a specified statement until the test condition evaluates to false. The condition is evaluated after executing the statement, resulting in the specified statement executing at least once."
@@ -1082,7 +1143,8 @@
       "description": [
         "Crea un elemento canvas en el documento, y define sus dimensiones medidas en pixeles. Este método debe ser llamado solo una vez al comienzo de la función setup(). Llamar a la función createCanvas() más de una vez en un bosquejo puede resultar en comportamientos impredecibles. Si quieres más de un lienzo donde dibujar, debes usar la función createGraphics() (escondido por defecto, pero puede ser mostrado), Las variables de sistema width (ancho) y height (altura) son definidas por los parámetros pasados a la función. Si createCanvas() no es usado, la ventana tendrá un tamaño por defecto de 100 x 100 pixeles. Para más maneras de posicionar el lienzo, ver la sección de posición del lienzo.",
         "",
-        ""
+        "",
+        "For more ways to position the canvas, see the <a href='https://github.com/processing/p5.js/wiki/Positioning-your-canvas'> positioning the canvas</a> wiki page."
       ],
       "returns": "Objeto: lienzo generado",
       "params": {
@@ -1204,7 +1266,9 @@
       }
     },
     "resetMatrix": {
-      "description": ["Reemplaza la matriz actual con la matriz identidad"]
+      "description": [
+        "Reemplaza la matriz actual con la matriz identidad"
+      ]
     },
     "rotate": {
       "description": [
@@ -1218,13 +1282,19 @@
       }
     },
     "rotateX": {
-      "description": ["Rota en torno al eje X", ""],
+      "description": [
+        "Rota en torno al eje X",
+        ""
+      ],
       "params": {
         "angle": "Número: ángulo en radianes"
       }
     },
     "rotateY": {
-      "description": ["Rota en torno al eje Y", ""],
+      "description": [
+        "Rota en torno al eje Y",
+        ""
+      ],
       "params": {
         "angle": "Número: ángulo en radianes"
       }
@@ -1308,7 +1378,9 @@
       ]
     },
     "removeItem": {
-      "description": ["Removes an item that was stored with storeItem()"],
+      "description": [
+        "Removes an item that was stored with storeItem()"
+      ],
       "params": {
         "key": "String"
       }
@@ -1387,8 +1459,7 @@
     },
     "createP": {
       "description": [
-        "Creates a ",
-        " element in the DOM with given inner HTML. Used for paragraph length text."
+        "Creates a "
       ],
       "returns": "p5.Element: pointer to <a href=\"#/p5.Element\">p5.Element</a> holding created node",
       "params": {
@@ -1682,18 +1753,27 @@
         "",
         "",
         ""
-      ]
+      ],
+      "params": {
+        "event": "Object: (Optional) optional KeyboardEvent callback argument."
+      }
     },
     "keyReleased": {
       "description": [
         "La función keyReleased() es llamada una vez cada vez que una tecla es soltada. Ver key y keyCode para más información. Los navegadores tienen distintos comportamientos por defecto asociados a distintos eventos gatillados por teclas. Para prevenir cualquier comportamiento por defecto para este evento, añade return false al final de este método."
-      ]
+      ],
+      "params": {
+        "event": "Object: (Optional) optional KeyboardEvent callback argument."
+      }
     },
     "keyTyped": {
       "description": [
         "la función keyTyped es llamada cava vez que una tecla es presionada, excepto cuando son presionadas la steclas de acción como Ctrl, Shift y Alt, que son ignoradas. La tecla presionada más reciente será almacenada en la variable key. Por la forma en que los sistemas operativos manejan la repetición de teclas, mantener presionada una tecla puede causar múltiples llamadas a keyTyped() (y también keyReleased()). La tasa de repetición es definida por el sistema operativo y según cómo cada computador está configurado. Los navegadores tienen distintos comportamientos por defecto asociados a distintos eventos gatillados por teclas. Para prevenir cualquier comportamiento por defecto para este evento, añade return false al final de este método.",
         ""
-      ]
+      ],
+      "params": {
+        "event": "Object: (Optional) optional KeyboardEvent callback argument."
+      }
     },
     "keyIsDown": {
       "description": [
@@ -2256,7 +2336,9 @@
       }
     },
     "dist": {
-      "description": ["Calcula la distancia entre dos puntos"],
+      "description": [
+        "Calcula la distancia entre dos puntos"
+      ],
       "returns": "Número: distancia entre los dos puntos",
       "params": {
         "x1": "Número: la coordenada x del primer punto",
@@ -2402,7 +2484,9 @@
       }
     },
     "fract": {
-      "description": ["Calculates the fractional part of a number."],
+      "description": [
+        "Calculates the fractional part of a number."
+      ],
       "returns": "Number: fractional part of x, i.e, {x}",
       "params": {
         "num": "Number: Number whose fractional part needs to be found out"
@@ -2702,7 +2786,9 @@
       }
     },
     "reverse": {
-      "description": ["Invierte el orden un arreglo, usa Array.reverse()."],
+      "description": [
+        "Invierte el orden un arreglo, usa Array.reverse()."
+      ],
       "returns": "el objeto p5",
       "params": {
         "list": "Arreglo: arreglo a ser invertido"
@@ -2996,7 +3082,9 @@
       "returns": "Número: el año actual"
     },
     "plane": {
-      "description": ["Dibuja un plano con ancho y altura dados."],
+      "description": [
+        "Dibuja un plano con ancho y altura dados."
+      ],
       "params": {
         "width": "Número: ancho del plano",
         "height": "Número: altura del plano",
@@ -3005,7 +3093,9 @@
       }
     },
     "box": {
-      "description": ["Dibuja una caja con ancho, altura y profundidad dados."],
+      "description": [
+        "Dibuja una caja con ancho, altura y profundidad dados."
+      ],
       "params": {
         "width": "Número: ancho de la caja",
         "Height": "Número: altura de la caja",
@@ -3015,7 +3105,10 @@
       }
     },
     "sphere": {
-      "description": ["Dibuja una esfera de radio dado.", ""],
+      "description": [
+        "Dibuja una esfera de radio dado.",
+        ""
+      ],
       "params": {
         "radius": "Número: radio del círculo",
         "detailX": "Número: opcional, número de segmentos, a mayor número de segmentos la geometría es más suave, por defecto es 24",
@@ -3023,7 +3116,10 @@
       }
     },
     "cylinder": {
-      "description": ["Dibuja un cilindro de radio y altura dados.", ""],
+      "description": [
+        "Dibuja un cilindro de radio y altura dados.",
+        ""
+      ],
       "params": {
         "radius": "Número: radio de la superficie",
         "height": "Número: altura del cilindro",
@@ -3034,7 +3130,10 @@
       }
     },
     "cone": {
-      "description": ["Dibuja un cono de radio y altura dados.", ""],
+      "description": [
+        "Dibuja un cono de radio y altura dados.",
+        ""
+      ],
       "params": {
         "radius": "Número: radio de la superficie inferior",
         "height": "Número: altura del cono",
@@ -3044,7 +3143,10 @@
       }
     },
     "ellipsoid": {
-      "description": ["Dibuja un elipsoide de radio dado.", ""],
+      "description": [
+        "Dibuja un elipsoide de radio dado.",
+        ""
+      ],
       "params": {
         "radiusx": "Número: radio x del círculo",
         "radiusy": "Número: radio y del círculo",
@@ -3054,7 +3156,10 @@
       }
     },
     "torus": {
-      "description": ["Dibuja un toroide con radio y tubo dado.", ""],
+      "description": [
+        "Dibuja un toroide con radio y tubo dado.",
+        ""
+      ],
       "params": {
         "radius": "Número: radio del anillo completo",
         "tubeRadius": "Número: radio del tubo",
@@ -3094,10 +3199,14 @@
       }
     },
     "noDebugMode": {
-      "description": ["Turns off debugMode() in a 3D sketch."]
+      "description": [
+        "Turns off debugMode() in a 3D sketch."
+      ]
     },
     "ambientLight": {
-      "description": ["Crea una luz ambiente con color"],
+      "description": [
+        "Crea una luz ambiente con color"
+      ],
       "params": {
         "v1": "Número|Arreglo|String|p5.Color: valor de gris, rojo o tinte (dependiendo del modo de color actual), o arreglo de color o String de color CSS",
         "v2": "Número: opcional, valor de verde o saturación",
@@ -3126,7 +3235,10 @@
       }
     },
     "directionalLight": {
-      "description": ["Crea una luz direccional con color y dirección", ""],
+      "description": [
+        "Crea una luz direccional con color y dirección",
+        ""
+      ],
       "params": {
         "v1": "Número|Arreglo|String|p5.Color: valor de gris, rojo o tinte (dependiendo del modo de color actual), o arreglo de color o String de color CSS",
         "v2": "Número: opcional, valor de verde o saturación",
@@ -3139,7 +3251,10 @@
       }
     },
     "pointLight": {
-      "description": ["Crea una luz puntual con color y posición", ""],
+      "description": [
+        "Crea una luz puntual con color y posición",
+        ""
+      ],
       "params": {
         "v1": "Número|Arreglo|String|p5.Color: valor de gris, rojo o tinte (dependiendo del modo de color actual), o arreglo de color o String de color CSS",
         "v2": "Número: opcional, valor de verde o saturación",
@@ -3212,7 +3327,9 @@
       }
     },
     "model": {
-      "description": ["Hace el render de un modelo 3D en la pantalla."],
+      "description": [
+        "Hace el render de un modelo 3D en la pantalla."
+      ],
       "params": {
         "model": "p5.Geometry: modelo 3D cargado para realizar render"
       }
@@ -3330,7 +3447,12 @@
       }
     },
     "camera": {
-      "description": ["Define la posición de la cámara", "", "", ""],
+      "description": [
+        "Define la posición de la cámara",
+        "",
+        "",
+        ""
+      ],
       "params": {
         "x": "Número: valor de la posición de la cámara en el eje x",
         "y": "Número: valor de la posición de la cámara en el eje y",
@@ -3344,7 +3466,10 @@
       }
     },
     "perspective": {
-      "description": ["Define la perspectiva de la cámara", ""],
+      "description": [
+        "Define la perspectiva de la cámara",
+        ""
+      ],
       "params": {
         "fovy": "Número: frustum del campo de visión vertical de la cámara, de abajo hacia arriba, en grados",
         "aspect": "Número: frustum de la relación de aspecto de la cámara",
@@ -3353,7 +3478,9 @@
       }
     },
     "ortho": {
-      "description": ["Define la cámara ortogonal"],
+      "description": [
+        "Define la cámara ortogonal"
+      ],
       "params": {
         "left": "Número: define el frustum del plano izquierdo de la cámara",
         "right": "Número: define el frustum del plano derecho de la cámara",
@@ -3688,26 +3815,34 @@
       }
     },
     "addClass": {
-      "description": ["Adds specified class to the element."],
+      "description": [
+        "Adds specified class to the element."
+      ],
       "params": {
         "class": "String: name of class to add"
       }
     },
     "removeClass": {
-      "description": ["Removes specified class from the element."],
+      "description": [
+        "Removes specified class from the element."
+      ],
       "params": {
         "class": "String: name of class to remove"
       }
     },
     "hasClass": {
-      "description": ["Checks if specified class already set to element"],
+      "description": [
+        "Checks if specified class already set to element"
+      ],
       "returns": "Boolean: a boolean value if element has specified class",
       "params": {
         "c": "String: class name of class to check"
       }
     },
     "toggleClass": {
-      "description": ["Toggles element class"],
+      "description": [
+        "Toggles element class"
+      ],
       "params": {
         "c": "String: class name to toggle"
       }
@@ -3771,7 +3906,9 @@
       }
     },
     "removeAttribute": {
-      "description": ["Removes an attribute on the specified element."],
+      "description": [
+        "Removes an attribute on the specified element."
+      ],
       "params": {
         "attr": "String: attribute to remove"
       }
@@ -3894,7 +4031,9 @@
       }
     },
     "get": {
-      "description": ["Returns the value stored at the given key."],
+      "description": [
+        "Returns the value stored at the given key."
+      ],
       "returns": "Number|String: the value stored at that key",
       "params": {
         "the": "Number|String: key you want to access"
@@ -3910,7 +4049,9 @@
       }
     },
     "create": {
-      "description": ["Creates a new key-value pair in the Dictionary."],
+      "description": [
+        "Creates a new key-value pair in the Dictionary."
+      ],
       "params": {
         "key": "Number|String",
         "value": "Number|String",
@@ -3947,10 +4088,14 @@
     }
   },
   "p5.StringDict": {
-    "description": ["A simple Dictionary class for Strings."]
+    "description": [
+      "A simple Dictionary class for Strings."
+    ]
   },
   "p5.NumberDict": {
-    "description": ["Una simple clase de Diccionario para Números."],
+    "description": [
+      "Una simple clase de Diccionario para Números."
+    ],
     "add": {
       "description": [
         "Agregue el número dado al valor actualmente almacenado en la clave dada. La suma luego reemplaza el valor previamente almacenado en el Diccionario."
@@ -4020,11 +4165,15 @@
       "elt": "String: nodo DOM que está envuelto"
     },
     "src": {
-      "description": ["Ruta a la fuente del elemento multimedia."],
+      "description": [
+        "Ruta a la fuente del elemento multimedia."
+      ],
       "returns": "String: src"
     },
     "play": {
-      "description": ["Reproduce un elemento multimedia HTML5."]
+      "description": [
+        "Reproduce un elemento multimedia HTML5."
+      ]
     },
     "stop": {
       "description": [
@@ -4032,7 +4181,9 @@
       ]
     },
     "pause": {
-      "description": ["Pausa un elemento multimedia HTML5."]
+      "description": [
+        "Pausa un elemento multimedia HTML5."
+      ]
     },
     "loop": {
       "description": [
@@ -4080,7 +4231,9 @@
       }
     },
     "duration": {
-      "description": ["Devuelve la duración del elemento multimedia HTML5."],
+      "description": [
+        "Devuelve la duración del elemento multimedia HTML5."
+      ],
       "returns": "Number: duration"
     },
     "onended": {
@@ -4111,7 +4264,9 @@
       ]
     },
     "hideControls": {
-      "description": ["Ocultar los controles predeterminados de mediaElement."]
+      "description": [
+        "Ocultar los controles predeterminados de mediaElement."
+      ]
     },
     "addCue": {
       "description": [
@@ -4156,7 +4311,9 @@
       ]
     },
     "type": {
-      "description": ["File type (image, text, etc.)"]
+      "description": [
+        "File type (image, text, etc.)"
+      ]
     },
     "subtype": {
       "description": [
@@ -4164,10 +4321,14 @@
       ]
     },
     "name": {
-      "description": ["File name"]
+      "description": [
+        "File name"
+      ]
     },
     "size": {
-      "description": ["File size"]
+      "description": [
+        "File size"
+      ]
     },
     "data": {
       "description": [
@@ -4187,10 +4348,14 @@
       "height": "Número de altura:"
     },
     "width": {
-      "description": ["Ancho de la imagen."]
+      "description": [
+        "Ancho de la imagen."
+      ]
     },
     "height": {
-      "description": ["Altura de imagen."]
+      "description": [
+        "Altura de imagen."
+      ]
     },
     "pixels": {
       "description": [
@@ -4274,7 +4439,16 @@
     },
     "filter": {
       "description": [
-        "Aplica un filtro de imagen a un <a href=\"#/p5.Image\">p5.Image</a>"
+        "Aplica un filtro de imagen a un <a href=\"#/p5.Image\">p5.Image</a>",
+        "THRESHOLD Converts the image to black and white pixels depending if they are above or below the threshold defined by the level parameter. The parameter must be between 0.0 (black) and 1.0 (white). If no level is specified, 0.5 is used. ",
+        "GRAY Converts any colors in the image to grayscale equivalents. No parameter is used. ",
+        "OPAQUE Sets the alpha channel to entirely opaque. No parameter is used. ",
+        "INVERT Sets each pixel to its inverse value. No parameter is used. ",
+        "POSTERIZE Limits each channel of the image to the number of colors specified as the parameter. The parameter can be set to values between 2 and 255, but results are most noticeable in the lower ranges. ",
+        "BLUR Executes a Gaussian blur with the level parameter specifying the extent of the blurring. If no parameter is used, the blur is equivalent to Gaussian blur of radius 1. Larger values increase the blur. ",
+        "ERODE Reduces the light areas. No parameter is used. ",
+        "DILATE Increases the light areas. No parameter is used. ",
+        "filter() does not work in WEBGL mode. A similar effect can be achieved in WEBGL mode using custom shaders. Adam Ferriss has written a <a href=\"https://github.com/aferriss/p5jsShaderExamples\" target='_blank'>selection of shader examples</a> that contains many of the effects present in the filter examples."
       ],
       "params": {
         "filterType": "Constant: either THRESHOLD, GRAY, OPAQUE, INVERT,  POSTERIZE, BLUR, ERODE, DILATE or BLUR.  See Filters.js for docs on  each available filter",
@@ -4308,7 +4482,9 @@
       }
     },
     "reset": {
-      "description": ["Inicia un GIF animado en el estado inicial."]
+      "description": [
+        "Inicia un GIF animado en el estado inicial."
+      ]
     },
     "getCurrentFrame": {
       "description": [
@@ -4325,7 +4501,9 @@
       }
     },
     "numFrames": {
-      "description": ["Devuelve el número de fotogramas en un GIF animado"],
+      "description": [
+        "Devuelve el número de fotogramas en un GIF animado"
+      ],
       "returns": "Number: "
     },
     "play": {
@@ -4334,7 +4512,9 @@
       ]
     },
     "pause": {
-      "description": ["Pausa un GIF animado."]
+      "description": [
+        "Pausa un GIF animado."
+      ]
     },
     "delay": {
       "description": [
@@ -4352,7 +4532,9 @@
       "extension": "String (Optional)"
     },
     "write": {
-      "description": ["Writes data to the PrintWriter stream"],
+      "description": [
+        "Writes data to the PrintWriter stream"
+      ],
       "params": {
         "data": "Array: all data to be written by the PrintWriter"
       }
@@ -4371,7 +4553,9 @@
       ]
     },
     "close": {
-      "description": ["Closes the PrintWriter"]
+      "description": [
+        "Closes the PrintWriter"
+      ]
     }
   },
   "p5.Table": {
@@ -4402,7 +4586,9 @@
       }
     },
     "removeRow": {
-      "description": ["Elimina una fila del objeto de tabla."],
+      "description": [
+        "Elimina una fila del objeto de tabla."
+      ],
       "params": {
         "id": "Integer: ID number of the row to remove"
       }
@@ -4485,11 +4671,15 @@
       }
     },
     "getColumnCount": {
-      "description": ["Devuelve el número total de columnas en una tabla."],
+      "description": [
+        "Devuelve el número total de columnas en una tabla."
+      ],
       "returns": "Integer: Number of columns in this table"
     },
     "getRowCount": {
-      "description": ["Devuelve el número total de filas en una tabla."],
+      "description": [
+        "Devuelve el número total de filas en una tabla."
+      ],
       "returns": "Integer: Number of rows in this table"
     },
     "removeTokens": {
@@ -4721,7 +4911,9 @@
       }
     },
     "removeChild": {
-      "description": ["Removes the element specified by name or index."],
+      "description": [
+        "Removes the element specified by name or index."
+      ],
       "params": {
         "name": "String|Integer: element name or index"
       }
@@ -4786,7 +4978,9 @@
       }
     },
     "setContent": {
-      "description": ["Sets the element's content."],
+      "description": [
+        "Sets the element's content."
+      ],
       "params": {
         "text": "String: the new content"
       }
@@ -4810,13 +5004,19 @@
       "z": "Número: componente z del vector"
     },
     "x": {
-      "description": ["The x component of the vector"]
+      "description": [
+        "The x component of the vector"
+      ]
     },
     "y": {
-      "description": ["The y component of the vector"]
+      "description": [
+        "The y component of the vector"
+      ]
     },
     "z": {
-      "description": ["The z component of the vector"]
+      "description": [
+        "The z component of the vector"
+      ]
     },
     "set": {
       "description": [
@@ -4963,7 +5163,11 @@
       "description": [
         "Normalize the vector to length 1 (make it a unit vector)."
       ],
-      "returns": "p5.Vector: normalized <a href=\"#/p5.Vector\">p5.Vector</a>"
+      "returns": "p5.Vector: normalized <a href=\"#/p5.Vector\">p5.Vector</a>",
+      "params": {
+        "v": "p5.Vector: the vector to normalize",
+        "target": "p5.Vector: (Optional) the vector to receive the result (Optional)"
+      }
     },
     "limit": {
       "description": [
@@ -4987,12 +5191,22 @@
       ],
       "returns": "Number: the angle of rotation"
     },
+    "setHeading": {
+      "description": [
+        "Rotate the vector to a specific angle (only 2D vectors), magnitude remains the same"
+      ],
+      "params": {
+        "angle": "Number: the angle of rotation"
+      }
+    },
     "rotate": {
       "description": [
         "Rotate the vector by an angle (only 2D vectors), magnitude remains the same"
       ],
       "params": {
-        "angle": "Number: the angle of rotation"
+        "angle": "Number: the angle of rotation",
+        "v": "p5.Vector",
+        "target": "p5.Vector: (Optional) the vector to receive the result (Optional)"
       }
     },
     "angleBetween": {
@@ -5005,7 +5219,9 @@
       }
     },
     "lerp": {
-      "description": ["Linear interpolate the vector to another vector"],
+      "description": [
+        "Linear interpolate the vector to another vector"
+      ],
       "params": {
         "x": "Number: the x component",
         "y": "Number: the y component",
@@ -5044,7 +5260,9 @@
       }
     },
     "fromAngle": {
-      "description": ["Make a new 2D vector from an angle"],
+      "description": [
+        "Make a new 2D vector from an angle"
+      ],
       "returns": "p5.Vector: the new <a href=\"#/p5.Vector\">p5.Vector</a> object",
       "params": {
         "angle": "Number: the desired angle, in radians (unaffected by <a href=\"#/p5/angleMode\">angleMode</a>)",
@@ -5063,21 +5281,29 @@
       }
     },
     "random2D": {
-      "description": ["Make a new 2D unit vector from a random angle"],
+      "description": [
+        "Make a new 2D unit vector from a random angle"
+      ],
       "returns": "p5.Vector: the new <a href=\"#/p5.Vector\">p5.Vector</a> object"
     },
     "random3D": {
-      "description": ["Make a new random 3D unit vector."],
+      "description": [
+        "Make a new random 3D unit vector."
+      ],
       "returns": "p5.Vector: the new <a href=\"#/p5.Vector\">p5.Vector</a> object"
     }
   },
   "p5.Font": {
-    "description": ["Clase base para manipulación de tipografía"],
+    "description": [
+      "Clase base para manipulación de tipografía"
+    ],
     "params": {
       "pInst": "Objeto: puntero a la instancia p5"
     },
     "font": {
-      "description": ["Underlying opentype font implementation"]
+      "description": [
+        "Underlying opentype font implementation"
+      ]
     },
     "textBounds": {
       "description": [
@@ -5110,10 +5336,56 @@
     "description": [
       "This class describes a camera for use in p5's <a href=\"https://github.com/processing/p5.js/wiki/Getting-started-with-WebGL-in-p5\"> WebGL mode</a>. It contains camera position, orientation, and projection information necessary for rendering a 3D scene. ",
       "New p5.Camera objects can be made through the <a href=\"#/p5/createCamera\">createCamera()</a> function and controlled through the methods described below. A camera created in this way will use a default position in the scene and a default perspective projection until these properties are changed through the various methods available. It is possible to create multiple cameras, in which case the current camera can be set through the <a href=\"#/p5/setCamera\">setCamera()</a> method. ",
-      "Note: The methods below operate in two coordinate systems: the 'world' coordinate system describe positions in terms of their relationship to the origin along the X, Y and Z axes whereas the camera's 'local' coordinate system describes positions from the camera's point of view: left-right, up-down, and forward-backward. The <a href=\"#/p5.Camera/move\">move()</a> method, for instance, moves the camera along its own axes, whereas the <a href=\"#/p5.Camera/setPosition\">setPosition()</a> method sets the camera's position in world-space."
+      "Note: The methods below operate in two coordinate systems: the 'world' coordinate system describe positions in terms of their relationship to the origin along the X, Y and Z axes whereas the camera's 'local' coordinate system describes positions from the camera's point of view: left-right, up-down, and forward-backward. The <a href=\"#/p5.Camera/move\">move()</a> method, for instance, moves the camera along its own axes, whereas the <a href=\"#/p5.Camera/setPosition\">setPosition()</a> method sets the camera's position in world-space.",
+      "The camera object propreties <code>eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ</code> which describes camera position, orientation, and projection are also accessible via the camera object generated using <a href=\"#/p5/createCamera\">createCamera()</a>"
     ],
     "params": {
       "rendererGL": "RendererGL: instance of WebGL renderer"
+    },
+    "eyeX": {
+      "description": [
+        "camera position value on x axis"
+      ]
+    },
+    "eyeY": {
+      "description": [
+        "camera position value on y axis"
+      ]
+    },
+    "eyeZ": {
+      "description": [
+        "camera position value on z axis"
+      ]
+    },
+    "centerX": {
+      "description": [
+        "x coordinate representing center of the sketch"
+      ]
+    },
+    "centerY": {
+      "description": [
+        "y coordinate representing center of the sketch"
+      ]
+    },
+    "centerZ": {
+      "description": [
+        "z coordinate representing center of the sketch"
+      ]
+    },
+    "upX": {
+      "description": [
+        "x component of direction 'up' from camera"
+      ]
+    },
+    "upY": {
+      "description": [
+        "y component of direction 'up' from camera"
+      ]
+    },
+    "upZ": {
+      "description": [
+        "z component of direction 'up' from camera"
+      ]
     },
     "perspective": {
       "description": [
@@ -5127,13 +5399,17 @@
     },
     "frustum": {},
     "pan": {
-      "description": ["Panning rotates the camera view to the left and right."],
+      "description": [
+        "Panning rotates the camera view to the left and right."
+      ],
       "params": {
         "angle": "Number: amount to rotate camera in current <a href=\"#/p5/angleMode\">angleMode</a> units. Greater than 0 values rotate counterclockwise (to the left)."
       }
     },
     "tilt": {
-      "description": ["Tilting rotates the camera view up and down."],
+      "description": [
+        "Tilting rotates the camera view up and down."
+      ],
       "params": {
         "angle": "Number: amount to rotate camera in current <a href=\"#/p5/angleMode\">angleMode</a> units. Greater than 0 values rotate counterclockwise (to the left)."
       }
@@ -5175,7 +5451,9 @@
     }
   },
   "p5.Geometry": {
-    "description": ["p5 Geometry class"],
+    "description": [
+      "p5 Geometry class"
+    ],
     "params": {
       "detailX": "Integer: (Optional) number of vertices on horizontal surface",
       "detailY": "Integer: (Optional) number of vertices on horizontal surface",
@@ -5192,10 +5470,14 @@
       ]
     },
     "averageNormals": {
-      "description": ["Averages the vertex normals. Used in curved surfaces"]
+      "description": [
+        "Averages the vertex normals. Used in curved surfaces"
+      ]
     },
     "averagePoleNormals": {
-      "description": ["Averages pole normals. Used in spherical primitives"]
+      "description": [
+        "Averages pole normals. Used in spherical primitives"
+      ]
     },
     "normalize": {
       "description": [
@@ -5204,7 +5486,9 @@
     }
   },
   "p5.Shader": {
-    "description": ["Clase Shader para el modo WEBGL"],
+    "description": [
+      "Clase Shader para el modo WEBGL"
+    ],
     "params": {
       "renderer": "p5.RendererGL: una instancia de p5.RendererGL que servirá de contexto GL para este nuevo p5.Shader",
       "vertSrc": "String: código fuente para el vertex shader (en forma de string)",
@@ -5259,7 +5543,9 @@
       "wet": "AudioNode: (Optional) Effects that extend this class should connect  to the wet signal to this gain node, so that dry and wet  signals are mixed properly."
     },
     "amp": {
-      "description": ["Set the output volume of the filter."],
+      "description": [
+        "Set the output volume of the filter."
+      ],
       "params": {
         "vol": "Number: (Optional) amplitude between 0 and 1.0",
         "rampTime": "Number: (Optional) create a fade that lasts until rampTime",
@@ -5275,7 +5561,9 @@
       }
     },
     "drywet": {
-      "description": ["Adjust the dry/wet value."],
+      "description": [
+        "Adjust the dry/wet value."
+      ],
       "params": {
         "fade": "Number: (Optional) The desired drywet value (0 - 1.0)"
       }
@@ -5289,7 +5577,9 @@
       }
     },
     "disconnect": {
-      "description": ["Disconnect all output."]
+      "description": [
+        "Disconnect all output."
+      ]
     }
   },
   "p5.Filter": {
@@ -5317,7 +5607,9 @@
       }
     },
     "set": {
-      "description": ["Set the frequency and the resonance of the filter."],
+      "description": [
+        "Set the frequency and the resonance of the filter."
+      ],
       "params": {
         "freq": "Number: (Optional) Frequency in Hz, from 10 to 22050",
         "res": "Number: (Optional) Resonance (Q) from 0.001 to 1000",
@@ -5441,16 +5733,22 @@
       }
     },
     "connect": {
-      "description": ["Connect to a p5.sound / Web Audio object."],
+      "description": [
+        "Connect to a p5.sound / Web Audio object."
+      ],
       "params": {
         "unit": "Object: A p5.sound or Web Audio object"
       }
     },
     "disconnect": {
-      "description": ["Disconnect all outputs"]
+      "description": [
+        "Disconnect all outputs"
+      ]
     },
     "pan": {
-      "description": ["Pan between Left (-1) and Right (1)"],
+      "description": [
+        "Pan between Left (-1) and Right (1)"
+      ],
       "params": {
         "panning": "Number: Number between -1 and 1",
         "timeFromNow": "Number: schedule this event to happen  seconds from now"
@@ -5529,7 +5827,7 @@
   },
   "p5.MonoSynth": {
     "description": [
-      "A MonoSynth is used as a single voice for sound synthesis. This is a class to be used in conjunction with the PolySynth class. Custom synthetisers should be built inheriting from this class."
+      "A MonoSynth is used as a single voice for sound synthesis. This is a class to be used in conjunction with the PolySynth class. Custom synthesizers should be built inheriting from this class."
     ],
     "play": {
       "description": [
@@ -5572,13 +5870,17 @@
       }
     },
     "attack": {
-      "description": ["Getters and Setters"]
+      "description": [
+        "Getters and Setters"
+      ]
     },
     "decay": {},
     "sustain": {},
     "release": {},
     "amp": {
-      "description": ["MonoSynth amp"],
+      "description": [
+        "MonoSynth amp"
+      ],
       "returns": "Number: new volume value",
       "params": {
         "vol": "Number: desired volume",
@@ -5586,13 +5888,17 @@
       }
     },
     "connect": {
-      "description": ["Connect to a p5.sound / Web Audio object."],
+      "description": [
+        "Connect to a p5.sound / Web Audio object."
+      ],
       "params": {
         "unit": "Object: A p5.sound or Web Audio object"
       }
     },
     "disconnect": {
-      "description": ["Disconnect all outputs"]
+      "description": [
+        "Disconnect all outputs"
+      ]
     },
     "dispose": {
       "description": [
@@ -5605,13 +5911,17 @@
       "Base class for monophonic synthesizers. Any extensions of this class should follow the API and implement the methods below in order to remain compatible with p5.PolySynth();"
     ],
     "connect": {
-      "description": ["Connect to p5 objects or Web Audio Nodes"],
+      "description": [
+        "Connect to p5 objects or Web Audio Nodes"
+      ],
       "params": {
         "unit": "Object"
       }
     },
     "disconnect": {
-      "description": ["Disconnect from soundOut"]
+      "description": [
+        "Disconnect from soundOut"
+      ]
     }
   },
   "p5.PolySynth": {
@@ -5628,7 +5938,9 @@
       ]
     },
     "polyvalue": {
-      "description": ["A PolySynth must have at least 1 voice, defaults to 8"]
+      "description": [
+        "A PolySynth must have at least 1 voice, defaults to 8"
+      ]
     },
     "AudioVoice": {
       "description": [
@@ -5689,13 +6001,17 @@
       }
     },
     "connect": {
-      "description": ["Connect to a p5.sound / Web Audio object."],
+      "description": [
+        "Connect to a p5.sound / Web Audio object."
+      ],
       "params": {
         "unit": "Object: A p5.sound or Web Audio object"
       }
     },
     "disconnect": {
-      "description": ["Disconnect all outputs"]
+      "description": [
+        "Disconnect all outputs"
+      ]
     },
     "dispose": {
       "description": [
@@ -5708,7 +6024,7 @@
       "SoundFile object with a path to a file.  ",
       "The p5.SoundFile may not be available immediately because it loads the file information asynchronously.  ",
       "To do something with the sound as soon as it loads pass the name of a function as the second parameter.  ",
-      "Only one file path is required. However, audio file formats (i.e. mp3, ogg, wav and m4a/aac) are not supported by all web browsers. If you want to ensure compatability, instead of a single file path, you may include an Array of filepaths, and the browser will choose a format that works."
+      "Only one file path is required. However, audio file formats (i.e. mp3, ogg, wav and m4a/aac) are not supported by all web browsers. If you want to ensure compatibility, instead of a single file path, you may include an Array of filepaths, and the browser will choose a format that works."
     ],
     "params": {
       "path": "String|Array: path to a sound file (String). Optionally,  you may include multiple file formats in  an array. Alternately, accepts an object  from the HTML5 File API, or a p5.File.",
@@ -5723,7 +6039,9 @@
       "returns": "Boolean: "
     },
     "play": {
-      "description": ["Play the p5.SoundFile"],
+      "description": [
+        "Play the p5.SoundFile"
+      ],
       "params": {
         "startTime": "Number: (Optional) (optional) schedule playback to start (in seconds from now).",
         "rate": "Number: (Optional) (optional) playback rate",
@@ -5788,7 +6106,9 @@
       "returns": "Boolean: "
     },
     "stop": {
-      "description": ["Stop soundfile playback."],
+      "description": [
+        "Stop soundfile playback."
+      ],
       "params": {
         "startTime": "Number: (Optional) (optional) schedule event to occur  in seconds from now"
       }
@@ -5814,7 +6134,9 @@
       }
     },
     "getPan": {
-      "description": ["Returns the current stereo pan position (-1.0 to 1.0)"],
+      "description": [
+        "Returns the current stereo pan position (-1.0 to 1.0)"
+      ],
       "returns": "Number: Returns the stereo pan setting of the Oscillator  as a number between -1.0 (left) and 1.0 (right).  0.0 is center and default."
     },
     "rate": {
@@ -5826,7 +6148,9 @@
       }
     },
     "duration": {
-      "description": ["Returns the duration of a sound file in seconds."],
+      "description": [
+        "Returns the duration of a sound file in seconds."
+      ],
       "returns": "Number: The duration of the soundFile in seconds."
     },
     "currentTime": {
@@ -5851,7 +6175,9 @@
       "returns": "Number: [channels]"
     },
     "sampleRate": {
-      "description": ["Return the sample rate of the sound file."],
+      "description": [
+        "Return the sample rate of the sound file."
+      ],
       "returns": "Number: [sampleRate]"
     },
     "frames": {
@@ -5892,7 +6218,9 @@
       }
     },
     "disconnect": {
-      "description": ["Disconnects the output of this p5sound object."]
+      "description": [
+        "Disconnects the output of this p5sound object."
+      ]
     },
     "setPath": {
       "description": [
@@ -5904,7 +6232,9 @@
       }
     },
     "setBuffer": {
-      "description": ["Replace the current Audio Buffer with a new Buffer."],
+      "description": [
+        "Replace the current Audio Buffer with a new Buffer."
+      ],
       "params": {
         "buf": "Array: Array of Float32 Array(s). 2 Float32 Arrays  will create a stereo source. 1 will create  a mono source."
       }
@@ -6100,12 +6430,14 @@
   "p5.Signal": {
     "description": [
       "p5.Signal is a constant audio-rate signal used by p5.Oscillator and p5.Envelope for modulation math.  ",
-      "This is necessary because Web Audio is processed on a seprate clock. For example, the p5 draw loop runs about 60 times per second. But the audio clock must process samples 44100 times per second. If we want to add a value to each of those samples, we can't do it in the draw loop, but we can do it by adding a constant-rate audio signal.</p.  ",
+      "This is necessary because Web Audio is processed on a separate clock. For example, the p5 draw loop runs about 60 times per second. But the audio clock must process samples 44100 times per second. If we want to add a value to each of those samples, we can't do it in the draw loop, but we can do it by adding a constant-rate audio signal.</p.  ",
       "This class mostly functions behind the scenes in p5.sound, and returns a Tone.Signal from the Tone.js library by Yotam Mann. If you want to work directly with audio signals for modular synthesis, check out <a href='http://bit.ly/1oIoEng' target=_'blank'>tone.js.</a>"
     ],
     "returns": "Tone.Signal: A Signal object from the Tone.js library",
     "fade": {
-      "description": ["Fade to value, for smooth transitions"],
+      "description": [
+        "Fade to value, for smooth transitions"
+      ],
       "params": {
         "value": "Number: Value to set this signal",
         "secondsFromNow": "Number: (Optional) Length of fade, in seconds from now"
@@ -6158,13 +6490,19 @@
       "Use the <code><a href=\"#/p5.Envelope/play\">play</a></code> method to play the entire envelope, the <code><a href=\"#/p5.Envelope/ramp\">ramp</a></code> method for a pingable trigger, or <code><a href=\"#/p5.Envelope/triggerAttack\">triggerAttack</a></code>/ <code><a href=\"#/p5.Envelope/triggerRelease\">triggerRelease</a></code> to trigger noteOn/noteOff."
     ],
     "attackTime": {
-      "description": ["Time until envelope reaches attackLevel"]
+      "description": [
+        "Time until envelope reaches attackLevel"
+      ]
     },
     "attackLevel": {
-      "description": ["Level once attack is complete."]
+      "description": [
+        "Level once attack is complete."
+      ]
     },
     "decayTime": {
-      "description": ["Time until envelope reaches decayLevel."]
+      "description": [
+        "Time until envelope reaches decayLevel."
+      ]
     },
     "decayLevel": {
       "description": [
@@ -6172,13 +6510,19 @@
       ]
     },
     "releaseTime": {
-      "description": ["Duration of the release portion of the envelope."]
+      "description": [
+        "Duration of the release portion of the envelope."
+      ]
     },
     "releaseLevel": {
-      "description": ["Level at the end of the release."]
+      "description": [
+        "Level at the end of the release."
+      ]
     },
     "set": {
-      "description": ["Reset the envelope with a series of time/value pairs."],
+      "description": [
+        "Reset the envelope with a series of time/value pairs."
+      ],
       "params": {
         "attackTime": "Number: Time (in seconds) before level  reaches attackLevel",
         "attackLevel": "Number: Typically an amplitude between  0.0 and 1.0",
@@ -6434,7 +6778,9 @@
       ]
     },
     "process": {
-      "description": ["Process an input by connecting it to the EQ"],
+      "description": [
+        "Process an input by connecting it to the EQ"
+      ],
       "params": {
         "src": "Object: Audio source"
       }
@@ -6454,13 +6800,17 @@
       ]
     },
     "process": {
-      "description": ["Connect an audio sorce"],
+      "description": [
+        "Connect an audio sorce"
+      ],
       "params": {
         "src": "Object: Input source"
       }
     },
     "set": {
-      "description": ["Set the X,Y,Z position of the Panner"],
+      "description": [
+        "Set the X,Y,Z position of the Panner"
+      ],
       "returns": "Array: Updated x, y, z values as an array",
       "params": {
         "xVal": "Number",
@@ -6470,19 +6820,27 @@
       }
     },
     "positionX": {
-      "description": ["Getter and setter methods for position coordinates"],
+      "description": [
+        "Getter and setter methods for position coordinates"
+      ],
       "returns": "Number: updated coordinate value"
     },
     "positionY": {
-      "description": ["Getter and setter methods for position coordinates"],
+      "description": [
+        "Getter and setter methods for position coordinates"
+      ],
       "returns": "Number: updated coordinate value"
     },
     "positionZ": {
-      "description": ["Getter and setter methods for position coordinates"],
+      "description": [
+        "Getter and setter methods for position coordinates"
+      ],
       "returns": "Number: updated coordinate value"
     },
     "orient": {
-      "description": ["Set the X,Y,Z position of the Panner"],
+      "description": [
+        "Set the X,Y,Z position of the Panner"
+      ],
       "returns": "Array: Updated x, y, z values as an array",
       "params": {
         "xVal": "Number",
@@ -6492,26 +6850,36 @@
       }
     },
     "orientX": {
-      "description": ["Getter and setter methods for orient coordinates"],
+      "description": [
+        "Getter and setter methods for orient coordinates"
+      ],
       "returns": "Number: updated coordinate value"
     },
     "orientY": {
-      "description": ["Getter and setter methods for orient coordinates"],
+      "description": [
+        "Getter and setter methods for orient coordinates"
+      ],
       "returns": "Number: updated coordinate value"
     },
     "orientZ": {
-      "description": ["Getter and setter methods for orient coordinates"],
+      "description": [
+        "Getter and setter methods for orient coordinates"
+      ],
       "returns": "Number: updated coordinate value"
     },
     "setFalloff": {
-      "description": ["Set the rolloff factor and max distance"],
+      "description": [
+        "Set the rolloff factor and max distance"
+      ],
       "params": {
         "maxDistance": "Number (Optional)",
         "rolloffFactor": "Number (Optional)"
       }
     },
     "maxDist": {
-      "description": ["Maxium distance between the source and the listener"],
+      "description": [
+        "Maxium distance between the source and the listener"
+      ],
       "returns": "Number: updated value",
       "params": {
         "maxDistance": "Number"
@@ -6588,7 +6956,9 @@
       }
     },
     "amp": {
-      "description": ["Set the output level of the delay effect."],
+      "description": [
+        "Set the output level of the delay effect."
+      ],
       "params": {
         "volume": "Number: amplitude between 0 and 1.0",
         "rampTime": "Number: (Optional) create a fade that lasts rampTime",
@@ -6596,18 +6966,22 @@
       }
     },
     "connect": {
-      "description": ["Send output to a p5.sound or web audio object"],
+      "description": [
+        "Send output to a p5.sound or web audio object"
+      ],
       "params": {
         "unit": "Object"
       }
     },
     "disconnect": {
-      "description": ["Disconnect all output."]
+      "description": [
+        "Disconnect all output."
+      ]
     }
   },
   "p5.Reverb": {
     "description": [
-      "Reverb adds depth to a sound through a large number of decaying echoes. It creates the perception that sound is occurring in a physical space. The p5.Reverb has paramters for Time (how long does the reverb last) and decayRate (how much the sound decays with each echo) that can be set with the .set() or .process() methods. The p5.Convolver extends p5.Reverb allowing you to recreate the sound of actual physical spaces through convolution. ",
+      "Reverb adds depth to a sound through a large number of decaying echoes. It creates the perception that sound is occurring in a physical space. The p5.Reverb has parameters for Time (how long does the reverb last) and decayRate (how much the sound decays with each echo) that can be set with the .set() or .process() methods. The p5.Convolver extends p5.Reverb allowing you to recreate the sound of actual physical spaces through convolution. ",
       "This class extends <a href = \"/reference/#/p5.Effect\">p5.Effect</a>. Methods <a href = \"/reference/#/p5.Effect/amp\">amp()</a>, <a href = \"/reference/#/p5.Effect/chain\">chain()</a>, <a href = \"/reference/#/p5.Effect/drywet\">drywet()</a>, <a href = \"/reference/#/p5.Effect/connect\">connect()</a>, and <a href = \"/reference/#/p5.Effect/disconnect\">disconnect()</a> are available."
     ],
     "process": {
@@ -6632,7 +7006,9 @@
       }
     },
     "amp": {
-      "description": ["Set the output level of the reverb effect."],
+      "description": [
+        "Set the output level of the reverb effect."
+      ],
       "params": {
         "volume": "Number: amplitude between 0 and 1.0",
         "rampTime": "Number: (Optional) create a fade that lasts rampTime",
@@ -6640,13 +7016,17 @@
       }
     },
     "connect": {
-      "description": ["Send output to a p5.sound or web audio object"],
+      "description": [
+        "Send output to a p5.sound or web audio object"
+      ],
       "params": {
         "unit": "Object"
       }
     },
     "disconnect": {
-      "description": ["Disconnect all output."]
+      "description": [
+        "Disconnect all output."
+      ]
     }
   },
   "p5.Convolver": {
@@ -6666,7 +7046,9 @@
       ]
     },
     "process": {
-      "description": ["Connect a source to the convolver."],
+      "description": [
+        "Connect a source to the convolver."
+      ],
       "params": {
         "src": "Object: p5.sound / Web Audio object with a sound  output."
       }
@@ -6729,17 +7111,21 @@
     ],
     "params": {
       "steps": "Number: (Optional) Steps in the part",
-      "tatums": "Number: (Optional) Divisions of a beat, e.g. use 1/4, or 0.25 for a quater note (default is 1/16, a sixteenth note)"
+      "tatums": "Number: (Optional) Divisions of a beat, e.g. use 1/4, or 0.25 for a quarter note (default is 1/16, a sixteenth note)"
     },
     "setBPM": {
-      "description": ["Set the tempo of this part, in Beats Per Minute."],
+      "description": [
+        "Set the tempo of this part, in Beats Per Minute."
+      ],
       "params": {
         "BPM": "Number: Beats Per Minute",
         "rampTime": "Number: (Optional) Seconds from now"
       }
     },
     "getBPM": {
-      "description": ["Returns the tempo, in Beats Per Minute, of this part."],
+      "description": [
+        "Returns the tempo, in Beats Per Minute, of this part."
+      ],
       "returns": "Number: "
     },
     "start": {
@@ -6759,7 +7145,9 @@
       }
     },
     "noLoop": {
-      "description": ["Tell the part to stop looping."]
+      "description": [
+        "Tell the part to stop looping."
+      ]
     },
     "stop": {
       "description": [
@@ -6778,7 +7166,9 @@
       }
     },
     "addPhrase": {
-      "description": ["Add a p5.Phrase to this Part."],
+      "description": [
+        "Add a p5.Phrase to this Part."
+      ],
       "params": {
         "phrase": "p5.Phrase: reference to a p5.Phrase"
       }
@@ -6825,16 +7215,24 @@
       "parts": "p5.Part: (Optional) One or multiple parts, to be played in sequence."
     },
     "start": {
-      "description": ["Start playback of the score."]
+      "description": [
+        "Start playback of the score."
+      ]
     },
     "stop": {
-      "description": ["Stop playback of the score."]
+      "description": [
+        "Stop playback of the score."
+      ]
     },
     "pause": {
-      "description": ["Pause playback of the score."]
+      "description": [
+        "Pause playback of the score."
+      ]
     },
     "loop": {
-      "description": ["Loop playback of the score."]
+      "description": [
+        "Loop playback of the score."
+      ]
     },
     "noLoop": {
       "description": [
@@ -6842,7 +7240,9 @@
       ]
     },
     "setBPM": {
-      "description": ["Set the tempo for all parts in the score"],
+      "description": [
+        "Set the tempo for all parts in the score"
+      ],
       "params": {
         "BPM": "Number: Beats Per Minute",
         "rampTime": "Number: Seconds from now"
@@ -6850,7 +7250,9 @@
     }
   },
   "p5.SoundLoop": {
-    "description": ["SoundLoop"],
+    "description": [
+      "SoundLoop"
+    ],
     "params": {
       "callback": "Function: this function will be called on each iteration of theloop",
       "interval": "Number|String: (Optional) amount of time (if a number) or beats (if a string, following <a href = \"https://github.com/Tonejs/Tone.js/wiki/Time\">Tone.Time</a> convention) for each iteration of the loop. Defaults to 1 second."
@@ -6866,19 +7268,25 @@
       ]
     },
     "start": {
-      "description": ["Start the loop"],
+      "description": [
+        "Start the loop"
+      ],
       "params": {
         "timeFromNow": "Number: (Optional) schedule a starting time"
       }
     },
     "stop": {
-      "description": ["Stop the loop"],
+      "description": [
+        "Stop the loop"
+      ],
       "params": {
         "timeFromNow": "Number: (Optional) schedule a stopping time"
       }
     },
     "pause": {
-      "description": ["Pause the loop"],
+      "description": [
+        "Pause the loop"
+      ],
       "params": {
         "timeFromNow": "Number: (Optional) schedule a pausing time"
       }
@@ -6898,18 +7306,24 @@
       ]
     },
     "timeSignature": {
-      "description": ["number of quarter notes in a measure (defaults to 4)"]
+      "description": [
+        "number of quarter notes in a measure (defaults to 4)"
+      ]
     },
     "interval": {
-      "description": ["length of the loops interval"]
+      "description": [
+        "length of the loops interval"
+      ]
     },
     "iterations": {
-      "description": ["how many times the callback has been called so far"]
+      "description": [
+        "how many times the callback has been called so far"
+      ]
     }
   },
   "p5.Compressor": {
     "description": [
-      "Compressor is an audio effect class that performs dynamics compression on an audio input source. This is a very commonly used technique in music and sound production. Compression creates an overall louder, richer, and fuller sound by lowering the volume of louds and raising that of softs. Compression can be used to avoid clipping (sound distortion due to peaks in volume) and is especially useful when many sounds are played at once. Compression can be used on indivudal sound sources in addition to the master output. ",
+      "Compressor is an audio effect class that performs dynamics compression on an audio input source. This is a very commonly used technique in music and sound production. Compression creates an overall louder, richer, and fuller sound by lowering the volume of louds and raising that of softs. Compression can be used to avoid clipping (sound distortion due to peaks in volume) and is especially useful when many sounds are played at once. Compression can be used on individual sound sources in addition to the master output. ",
       "This class extends <a href = \"/reference/#/p5.Effect\">p5.Effect</a>. Methods <a href = \"/reference/#/p5.Effect/amp\">amp()</a>, <a href = \"/reference/#/p5.Effect/chain\">chain()</a>, <a href = \"/reference/#/p5.Effect/drywet\">drywet()</a>, <a href = \"/reference/#/p5.Effect/connect\">connect()</a>, and <a href = \"/reference/#/p5.Effect/disconnect\">disconnect()</a> are available."
     ],
     "compressor": {
@@ -6931,7 +7345,9 @@
       }
     },
     "set": {
-      "description": ["Set the paramters of a compressor."],
+      "description": [
+        "Set the parameters of a compressor."
+      ],
       "params": {
         "attack": "Number: The amount of time (in seconds) to reduce the gain by 10dB,  default = .003, range 0 - 1",
         "knee": "Number: A decibel value representing the range above the  threshold where the curve smoothly transitions to the \"ratio\" portion.  default = 30, range 0 - 40",
@@ -6941,42 +7357,54 @@
       }
     },
     "attack": {
-      "description": ["Get current attack or set value w/ time ramp"],
+      "description": [
+        "Get current attack or set value w/ time ramp"
+      ],
       "params": {
         "attack": "Number: (Optional) Attack is the amount of time (in seconds) to reduce the gain by 10dB,  default = .003, range 0 - 1",
         "time": "Number: (Optional) Assign time value to schedule the change in value"
       }
     },
     "knee": {
-      "description": ["Get current knee or set value w/ time ramp"],
+      "description": [
+        "Get current knee or set value w/ time ramp"
+      ],
       "params": {
         "knee": "Number: (Optional) A decibel value representing the range above the  threshold where the curve smoothly transitions to the \"ratio\" portion.  default = 30, range 0 - 40",
         "time": "Number: (Optional) Assign time value to schedule the change in value"
       }
     },
     "ratio": {
-      "description": ["Get current ratio or set value w/ time ramp"],
+      "description": [
+        "Get current ratio or set value w/ time ramp"
+      ],
       "params": {
         "ratio": "Number: (Optional) The amount of dB change in input for a 1 dB change in output  default = 12, range 1 - 20",
         "time": "Number: (Optional) Assign time value to schedule the change in value"
       }
     },
     "threshold": {
-      "description": ["Get current threshold or set value w/ time ramp"],
+      "description": [
+        "Get current threshold or set value w/ time ramp"
+      ],
       "params": {
         "threshold": "Number: The decibel value above which the compression will start taking effect  default = -24, range -100 - 0",
         "time": "Number: (Optional) Assign time value to schedule the change in value"
       }
     },
     "release": {
-      "description": ["Get current release or set value w/ time ramp"],
+      "description": [
+        "Get current release or set value w/ time ramp"
+      ],
       "params": {
         "release": "Number: The amount of time (in seconds) to increase the gain by 10dB  default = .25, range 0 - 1",
         "time": "Number: (Optional) Assign time value to schedule the change in value"
       }
     },
     "reduction": {
-      "description": ["Return the current reduction value"],
+      "description": [
+        "Return the current reduction value"
+      ],
       "returns": "Number: Value of the amount of gain reduction that is applied to the signal"
     }
   },
@@ -7025,7 +7453,9 @@
       "framesPerPeak": "Number: (Optional) Defaults to 20."
     },
     "isDetected": {
-      "description": ["isDetected is set to true when a peak is detected."]
+      "description": [
+        "isDetected is set to true when a peak is detected."
+      ]
     },
     "update": {
       "description": [
@@ -7048,25 +7478,33 @@
   },
   "p5.Gain": {
     "description": [
-      "A gain node is usefull to set the relative volume of sound. It's typically used to build mixers."
+      "A gain node is useful to set the relative volume of sound. It's typically used to build mixers."
     ],
     "setInput": {
-      "description": ["Connect a source to the gain node."],
+      "description": [
+        "Connect a source to the gain node."
+      ],
       "params": {
         "src": "Object: p5.sound / Web Audio object with a sound  output."
       }
     },
     "connect": {
-      "description": ["Send output to a p5.sound or web audio object"],
+      "description": [
+        "Send output to a p5.sound or web audio object"
+      ],
       "params": {
         "unit": "Object"
       }
     },
     "disconnect": {
-      "description": ["Disconnect all output."]
+      "description": [
+        "Disconnect all output."
+      ]
     },
     "amp": {
-      "description": ["Set the output level of the gain node."],
+      "description": [
+        "Set the output level of the gain node."
+      ],
       "params": {
         "volume": "Number: amplitude between 0 and 1.0",
         "rampTime": "Number: (Optional) create a fade that lasts rampTime",
@@ -7107,11 +7545,15 @@
       }
     },
     "getAmount": {
-      "description": ["Return the distortion amount, typically between 0-1."],
+      "description": [
+        "Return the distortion amount, typically between 0-1."
+      ],
       "returns": "Number: Unbounded distortion amount.  Normal values range from 0-1."
     },
     "getOversample": {
-      "description": ["Return the oversampling."],
+      "description": [
+        "Return the oversampling."
+      ],
       "returns": "String: Oversample can either be 'none', '2x', or '4x'."
     }
   }

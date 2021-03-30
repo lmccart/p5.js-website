@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="p5.js a JS client-side library for creating graphic and interactive experiences, based on the core principles of Processing.">
     <title tabindex="1">learn | p5.js</title>
-    <link rel="stylesheet" href="/assets/css/all.css?v=236ece">
+    <link rel="stylesheet" href="/assets/css/all.css?v=b0528d">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="/../../assets/img/favicon.ico">
     <link rel="icon" href="/../../assets/img/favicon.ico">
@@ -17,7 +18,7 @@
     <script src="/../../assets/js/vendor/ace-nc/ace.js"></script>
     <script src="/../../assets/js/vendor/ace-nc/mode-javascript.js"></script>
     <script src="/../../assets/js/vendor/prism.js"></script>
-    <script src="/assets/js/init.js?v=af215d"></script>
+    <script src="/assets/js/init.js?v=97b4f7"></script>
 
     <script src="/../../assets/js/vendor/pangu.min.js"></script>
 
@@ -62,7 +63,7 @@
         <li><a href="/zh-Hans/">主页</a></li>
         <li><a href="https://editor.p5js.org">编辑器</a></li>
         <li><a href="/zh-Hans/download/">下载</a></li>
-        <li><a href="/zh-Hans/download/support.html">Donate</a></li>
+        <li><a href="/zh-Hans/download/support.html">捐献</a></li>
         <li><a href="/zh-Hans/get-started/">入门</a></li>
         <li><a href="/zh-Hans/reference/">参考文献</a></li>
         <li><a href="/zh-Hans/libraries/">程式库</a></li>
@@ -70,7 +71,7 @@
         <li><a href="/zh-Hans/examples/">范例</a></li>
         <li><a href="/zh-Hans/books/">书籍</a></li>
         <li><a href="/zh-Hans/community/">社群</a></li>
-        <li><a href="https://showcase.p5js.org">Showcase</a></li>
+        <li><a href="https://showcase.p5js.org">案例展示</a></li>
         <li><a href="https://discourse.processing.org/c/p5js" target=_blank class="other-link">论坛</a></li>
         <li><a href="http://github.com/processing/p5.js" target=_blank class="other-link">GitHub</a></li>
         <li><a href="http://twitter.com/p5xjs" target=_blank class="other-link">Twitter</a></li>
@@ -111,7 +112,7 @@
       <p><a href="/reference/#/p5/point">point()</a> （点）是最简单的图形同时也是个不错的起点。以绘制一个点（point），我们只需要提供 x 及 y 坐标。</p>
       <!-- this script only needs to get added once even if there are multiple widget instances -->
       <script src="//toolness.github.io/p5.js-widget/p5-widget.js"></script>
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(100, 100);
 }
@@ -121,7 +122,7 @@ function draw(){
 </script>
 
       <p><a href="/reference/#/p5/line">line()</a> （直线）也不会特别困难，我们只需提供两个点 (x1,y1) 及 (x2,y2)：</p>
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(100, 100);
 }
@@ -131,7 +132,7 @@ function draw(){
 </script>
 
       <p>当我们想要绘制一个 <a href="/reference/#/p5/rect">rect()</a> （四方形）时，这就会变得比较复杂一点。在 p5 内，一个四方形是由其左上角的坐标点与其宽度及高度来定义的。</p>
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(100, 100);
 }
@@ -141,7 +142,7 @@ function draw(){
 </script>
 
       <p>第二个绘制四方形的方法是定义其中心点的位置，然后定义其宽度及高度。如果我们想要使用这方法，我们必须先表示我们要使用 <a href="/reference/#/p5/CENTER">CENTER</a> 模式然后才输入绘制四方形的指示。请注意 p5 有区分大小写字母。</p>
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(100, 100);
   rectMode(CENTER);
@@ -152,7 +153,7 @@ function draw(){
 </script>
 
       <p>最后我们也能使用两个点来绘制一个四方形（分别定义左上角及右下角）。这模式为 <a href="/reference/#/p5/CORNERS">CORNERS</a>。请注意这范例在荧幕上显示的结果和上方的范例一样。</p>
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(100, 100);
   rectMode(CORNERS);
@@ -163,7 +164,7 @@ function draw(){
 </script>
 
       <p>当我们对于绘制一个四方形有了不错的掌握时，绘制一个 <a href="/reference/#/p5/ellipse">ellipse()</a> （椭圆形）可是轻而易举。事实上，它和绘制 <a href="/reference/#/p5/rect">rect()</a> （四方形）一样，唯一不同的是椭圆形将会被绘制在所定义的四方形内。<a href="/reference/#/p5/ellipse">ellipse()</a> 的默认模式为 <a href="/reference/#/p5/CENTER">CENTER</a> 而不是 <a href="/reference/#/p5/CORNER">CORNER</a>。</p>
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(100, 100);
   ellipseMode(CENTER);
@@ -173,7 +174,7 @@ function draw(){
 }
 </script>
 
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(100, 100);
   ellipseMode(CORNER);
@@ -183,7 +184,7 @@ function draw(){
 }
 </script>
 
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(100, 100);
   ellipseMode(CORNERS);
@@ -195,7 +196,7 @@ function draw(){
 
       <p>现在让我们来看看一些使用更实际绘图设置的程式代码。我们将使用一个大小为 200 乘 200 的画布大小。请注意我们这里使用的 createCanvas() 函数内所设定的画布高度及宽度。</p>
 
-<script type="text/p5" data-autoplay data-p5-version="1.1.9">
+<script type="text/p5" data-autoplay data-p5-version="1.3.1">
 function setup(){
   createCanvas(200, 200);
   rectMode(CENTER);
@@ -217,7 +218,7 @@ function draw(){
     <footer>
       <h2 class="sr-only">归功于</h2>
       <p> p5.js 目前由<a href='https://github.com/mcturner1995' target="_blank">Moira
-          Turner</a>的原<a href='http://lauren-mccarthy.com' target="_blank">Lauren
+          Turner</a>的原<a href='http://lauren-mccarthy.com' target="_blank">Lauren Lee
           McCarthy</a>并在<a href="http://processing.org/foundation/" target="_blank">Processing
           Foundation</a> 和
         <a href="http://itp.nyu.edu/itp/" target="_blank">NYU ITP</a>. 的支持下由其合作社群所开发。形象及平面设计<a
@@ -250,11 +251,10 @@ function draw(){
         <li><a href="http://pi.processing.org/">Processing for Pi</a></li>
         <li><a href="https://processingfoundation.org/">Processing Foundation</a></li>
       </ul>
-    
       <a tabindex="1" href="#content" id="skip-to-content">Skip to main content</a>
     
-      <!-- <a id="promo-link" href="https://donorbox.org/supportpf2019-fundraising-campaign" target="_blank"><div id="promo">This season, we need your help! Click here to #SupportP5!</div></a> -->
-    </nav>    <script>
+    </nav>
+    <script>
     var langs = ["en","es","ko","zh-Hans"];
 
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
